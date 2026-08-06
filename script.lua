@@ -1,4 +1,4 @@
--- Team BerTox by Anonymous133722 - Legendary Cyber UI with Random Dynamic Key
+-- Team BerTox by Anonymous133722 - Complete Key System Script
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local CoreGui = game:GetService("CoreGui")
@@ -22,9 +22,9 @@ local function generateRandomUserKey()
 end
 
 local userKey = generateRandomUserKey()
-print("Current Random User Key is: " .. userKey) -- Check F9 console to see the key
+print("Current User Key is: " .. userKey) -- Will print in F9 console for you to test
 
-local keyDuration = 24 * 60 * 60 -- Key valid for 24 hours
+local keyDuration = 24 * 60 * 60 -- Key valid for 24 hours once verified
 
 local function isKeyValid()
     local success, savedTime = pcall(function()
@@ -48,9 +48,9 @@ local function saveKeyTime()
     end)
 end
 
--- Cyber/Neon Legendary GUI
+-- Cyber/Neon UI Layer
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "BerToxLegendaryGui"
+ScreenGui.Name = "BerToxKeySystem"
 pcall(function()
     ScreenGui.Parent = CoreGui
 end)
@@ -74,7 +74,7 @@ UIStroke.Thickness = 2
 UIStroke.Color = Color3.fromRGB(0, 255, 128)
 UIStroke.Parent = MainFrame
 
--- Neon Laser Animation Loop
+-- Neon Border Animation Loop
 task.spawn(function()
     while MainFrame and MainFrame.Parent do
         TweenService:Create(UIStroke, TweenInfo.new(2, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut), {Color = Color3.fromRGB(0, 200, 255)}):Play()
@@ -87,14 +87,14 @@ end)
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, 0, 0, 45)
 Title.BackgroundTransparency = 1
-Title.Text = "⚡ TEAM BERTOX • SECURITY ⚡"
+Title.Text = "⚡ TEAM BERTOX • KEY SYSTEM ⚡"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 15
 Title.Font = Enum.Font.GothamBold
 Title.Parent = MainFrame
 
 local function startMainScript()
-    print("Legendary Script Loaded Successfully!")
+    print("Timebomb Script Loaded Successfully!")
     local StarterGui = game:GetService("StarterGui")
     pcall(function()
         StarterGui:SetCore("SendNotification", {
@@ -103,7 +103,7 @@ local function startMainScript()
             Duration = 5;
         })
     end)
-    -- Put your universal script features/functions here
+    -- Write your actual timebomb functions/script features here
 end
 
 if isKeyValid() then
@@ -160,8 +160,8 @@ local GetKeyCorner = Instance.new("UICorner")
 GetKeyCorner.CornerRadius = UDim.new(0, 8)
 GetKeyCorner.Parent = GetKeyBtn
 
--- Put your Work.ink link here inside the quotes
-local externalKeyLink = "https://work.ink/YOUR_LINK_HERE" 
+-- رابط Work.ink الجديد المحدث
+local externalKeyLink = "https://work.ink/2xiu/timebomb-key" 
 
 GetKeyBtn.MouseButton1Click:Connect(function()
     pcall(function()
