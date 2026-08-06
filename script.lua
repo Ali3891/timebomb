@@ -1,24 +1,23 @@
--- Team BerTox by Anonymous133722 - Admin & Dynamic User Key System
+-- Team BerTox by Anonymous133722 - Universal Script (Works in Any Game)
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local CoreGui = game:GetService("CoreGui")
 
-print("Team BerTox Script Initialized")
+print("Team BerTox Universal Script Initialized")
 
--- 1. مفتاحك الأساسي الثابت (خاص بك كصاحب السكريبت ولا يتغير أبداً)
+-- 1. مفتاحك الأساسي الثابت (خاص بك ولا يتغير)
 local adminKey = "BerTox-Owner-2026-Admin"
 
--- 2. المفتاح المتجدد للمستخدمين (يتغير تلقائياً كل 3 أيام أو يوم بناءً على الوقت)
+-- 2. المفتاح المتجدد للمستخدمين (يتغير تلقائياً كل 3 أيام)
 local function getDynamicUserKey()
     local dateTable = os.date("*t")
-    local weekNumber = math.ceil(dateTable.yday / 3) -- يتغير كل 3 أيام تلقائياً
+    local weekNumber = math.ceil(dateTable.yday / 3)
     return "BerTox-User-" .. (weekNumber * 1337) + 2026
 end
 
 local userKey = tostring(getDynamicUserKey())
-local keyDuration = 3 * 24 * 60 * 60 -- مدة صلاحية المفتاح للمستخدم بعد إدخاله
+local keyDuration = 3 * 24 * 60 * 60 -- صلاحية المفتاح (3 أيام)
 
--- (اختياري: طباعة المفتاح المتجدد للمستخدمين في الـ Console لمعرفته إذا أردت إعطاءه لهم)
 print("Current User Key is: " .. userKey)
 
 local function isKeyValid()
@@ -49,7 +48,7 @@ end
 
 -- واجهة إدخال المفتاح (GUI)
 local ScreenGui = Instance.new("ScreenGui")
-ScreenGui.Name = "BerToxMainGui"
+ScreenGui.Name = "BerToxUniversalGui"
 pcall(function()
     ScreenGui.Parent = CoreGui
 end)
@@ -71,25 +70,39 @@ UICorner.Parent = MainFrame
 local Title = Instance.new("TextLabel")
 Title.Size = UDim2.new(1, 0, 0, 40)
 Title.BackgroundTransparency = 1
-Title.Text = "Team BerTox - Access Control"
+Title.Text = "Team BerTox - Universal"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 16
 Title.Font = Enum.Font.SourceSansBold
 Title.Parent = MainFrame
 
+local function startMainScript()
+    -- هنا تضع الأكواد والوظائف العامة التي تريدها أن تعمل في أي ماب (مثل: Speed, Fly, ESP أو أي أدوات عامة)
+    print("Universal Script Loaded Successfully in this Game!")
+    
+    -- مثال على ميزة عامة بسيطة (تنويه بأن السكريبت اشتغل):
+    local StarterGui = game:GetService("StarterGui")
+    pcall(function()
+        StarterGui:SetCore("SendNotification", {
+            Title = "Team BerTox";
+            Text = "Script is active in this game!";
+            Duration = 5;
+        })
+    end)
+end
+
 if isKeyValid() then
     Title.Text = "Key Active! Loading..."
     task.wait(1)
     ScreenGui:Destroy()
-    -- ضع أكواد السكريبت الأساسية هنا
-    print("Script loaded successfully.")
+    startMainScript()
     return
 end
 
 local TextBox = Instance.new("TextBox")
 TextBox.Size = UDim2.new(0.8, 0, 0, 40)
 TextBox.Position = UDim2.new(0.1, 0, 0, 55)
-TextBox.PlaceholderText = "Enter Admin or User Key..."
+TextBox.PlaceholderText = "Enter Key..."
 TextBox.Text = ""
 TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextBox.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
@@ -116,14 +129,12 @@ BtnCorner.CornerRadius = UDim.new(0, 6)
 BtnCorner.Parent = SubmitBtn
 
 SubmitBtn.MouseButton1Click:Connect(function()
-    -- التحقق هل الكود المدخل هو مفتاح الآدمن الثابت أو مفتاح المستخدم المتجدد
     if TextBox.Text == adminKey or TextBox.Text == userKey then
         saveKeyTime()
         SubmitBtn.Text = "Success! Loading..."
         task.wait(1)
         ScreenGui:Destroy()
-        -- ضع أكواد السكريبت الأساسية هنا
-        print("Script loaded successfully.")
+        startMainScript()
     else
         SubmitBtn.Text = "Wrong or Expired Key!"
         task.wait(1)
